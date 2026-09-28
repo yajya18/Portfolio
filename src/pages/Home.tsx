@@ -5,7 +5,7 @@ import Container from '../components/Container/Container'
 import SectionHeading from '../components/SectionHeading/SectionHeading'
 import StatBlock from '../components/StatBlock/StatBlock'
 import ProjectCard from '../components/ProjectCard/ProjectCard'
-import { HeroVisual } from '../components/visuals'
+// import { HeroVisual } from '../components/visuals'
 import { siteConfig } from '../data/site'
 import { projects, getProjectBySlug } from '../data/projects'
 import { research } from '../data/research'
@@ -65,18 +65,18 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-16 md:ml-16 md:mt-20 lg:ml-28">
+          {/* <div className="mt-16 md:ml-16 md:mt-20 lg:ml-28">
             <div className="aspect-[16/10] border border-mist-200 bg-paper-dim p-6 md:p-10">
               <HeroVisual className="h-full w-full" />
             </div>
-          </div>
+          </div> */}
         </Container>
       </section>
 
       {/* ---------------------------------------------------------------- */}
       {/* STATS                                                            */}
       {/* ---------------------------------------------------------------- */}
-      <section className="mt-20 border-y border-mist-200 md:mt-28">
+        <section className="mt-14 border-y border-mist-200 md:mt-20">
         <Container>
           <div className="grid grid-cols-3 divide-x divide-mist-200 py-8">
             <div className="pr-4">
@@ -87,6 +87,32 @@ export default function Home() {
             </div>
             <div className="pl-4">
               <StatBlock value={siteConfig.education.year.split(' ')[0]} label="Year · CSE" />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+            {/* ---------------------------------------------------------------- */}
+      {/* ABOUT TEASER                                                     */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="pt-20 md:pt-28">
+        <Container>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-[200px_1fr] md:gap-12">
+            <span className="font-mono text-xs uppercase tracking-[0.18em] text-mist-500">
+              About
+            </span>
+            <div className="max-w-2xl">
+              <p className="font-serif text-2xl leading-snug text-ink md:text-3xl">
+                I&rsquo;m a third-year Computer Science Engineering student at{' '}
+                {siteConfig.education.institution}, interested in machine learning, backend
+                systems, databases, and applied engineering research.
+              </p>
+              <Link
+                to="/about"
+                className="underline-editorial mt-6 inline-flex font-sans text-sm font-medium text-ink"
+              >
+                More about me <span aria-hidden="true">→</span>
+              </Link>
             </div>
           </div>
         </Container>
@@ -113,10 +139,10 @@ export default function Home() {
 
             <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
               <div className="lg:col-span-2">
-                <ProjectCard project={airAware} size="large" />
+                <ProjectCard project={loopin} size="large" />
               </div>
-              <ProjectCard project={loopin} size="medium" />
               <ProjectCard project={thermal} size="medium" />
+              <ProjectCard project={airAware} size="medium" />
             </div>
           </div>
         </Container>

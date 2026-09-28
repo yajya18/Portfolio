@@ -147,76 +147,8 @@ export const projects: Project[] = [
 
   // -------------------------------------------------------------------------
   {
-    id: 'air-aware',
-    number: '02',
-    slug: 'air-aware',
-    title: 'Air Aware',
-    tagline: 'Spatial DBMS-based air quality monitoring system',
-    shortDescription:
-      'A PostGIS-powered system modeling stations, pollutants and readings to estimate air quality across space, not just at fixed points.',
-    description:
-      'Air Aware is a spatial database system for air quality monitoring, built around PostgreSQL and PostGIS. It models monitoring stations, pollutants, readings and alerts, and uses spatial analysis to estimate air quality at locations that have no monitoring station of their own.',
-    categories: ['Databases', 'Systems'],
-    technologies: ['PostgreSQL', 'PostGIS', 'Supabase', 'SQL', 'Spatial Databases'],
-    role: 'Independent project',
-    github: '',
-    liveDemo: '',
-    featured: true,
-    size: 'large',
-    visual: 'air-aware',
-    architecture: [
-      {
-        label: 'Core Architecture',
-        stages: ['Stations', 'Readings', 'PostGIS', 'AQI Engine', 'Alerts', 'Spatial Analysis'],
-      },
-      {
-        label: 'Spatial AQI Estimation',
-        stages: ['Location', 'Nearby Stations', 'Distance-Weighted AQI', 'Estimated AQI'],
-      },
-    ],
-    caseStudy: {
-      overview:
-        'Air Aware treats air quality as spatial data rather than a set of disconnected readings. Stations, pollutants and readings are modeled directly in PostGIS, and the system uses that geometry to compute AQI, detect pollution spikes, and estimate air quality even where no station exists.',
-      problem:
-        'Air quality is normally reported only at fixed monitoring stations, so any location between stations has no reliable estimate of the air it actually breathes.',
-      approach:
-        'Stations, pollutants, readings and alerts are modeled as a relational schema with native spatial geometry through PostGIS, rather than treating a station\u2019s location as a flat latitude/longitude attribute. Database functions, triggers and views compute AQI from incoming multi-pollutant readings, flag pollution spikes, and generate alerts and health advisories directly at the data layer — so derived state stays consistent with new readings as they arrive. For any arbitrary location, the system finds nearby stations through spatial queries and produces a distance-weighted, interpolated AQI estimate rather than requiring a station to be physically present at that point.',
-      implementation: [
-        'A relational schema for stations, pollutants, readings and alerts with native PostGIS geometry',
-        'Database functions and triggers computing AQI from multi-pollutant readings as they arrive',
-        'Views exposing current AQI and alert state without duplicating logic in application code',
-        'Spatial nearby-station search using PostGIS spatial queries',
-        'Pollution spike detection driving automated alerts and health advisories',
-        'Distance-weighted spatial interpolation to estimate AQI at locations without a station',
-      ],
-      keyDecisions: [
-        {
-          title: 'Modeling location as geometry, not an attribute',
-          detail:
-            'Storing station positions as PostGIS geometry rather than plain latitude/longitude columns enables genuine spatial queries — nearest-station search and radius queries — instead of manual distance math in application code.',
-        },
-        {
-          title: 'Pushing AQI logic into the database',
-          detail:
-            'AQI calculation, spike detection and alerting live in database functions, triggers and views, so every client reading the data sees the same derived state without recomputing it independently.',
-        },
-        {
-          title: 'Distance-weighted interpolation for unmonitored locations',
-          detail:
-            'Rather than leaving areas between stations unaccounted for, nearby readings are combined with distance-based weighting to produce an estimated AQI for any queried location.',
-        },
-      ],
-      results:
-        'The system models stations, pollutants, readings and alerts as spatial data, computes AQI and detects pollution spikes at the database layer, supports nearby-station search, and estimates AQI at arbitrary locations through distance-weighted spatial interpolation.',
-      lessons:
-        'Designing the schema around geometry from the start — instead of bolting spatial queries onto flat tables later — made nearest-station search and interpolation straightforward rather than something to work around. Pushing AQI and alert logic into functions, triggers and views also clarified how much consistency you gain by keeping derived state close to the data it depends on.',
-    },
-  },
-
-  // -------------------------------------------------------------------------
-  {
     id: 'thermal-management',
-    number: '03',
+    number: '02',
     slug: 'thermal-management',
     title: 'AI-Driven Proactive Thermal Management',
     tagline: 'Predictive ML cooling for cloud infrastructure',
@@ -290,7 +222,74 @@ export const projects: Project[] = [
         'Grounding a black-box model with a physical law (Newton\u2019s Law of Cooling) rather than relying on raw historical values alone made the resulting features far more informative, and was likely a significant contributor to the model\u2019s accuracy. Working across the hardware and ML boundary — instrumenting the sensor rig itself — also made clear how much of a predictive system\u2019s reliability depends on the quality of the telemetry it is trained on, well before any modeling decision is made.',
     },
   },
-
+  // -------------------------------------------------------------------------
+  {
+    id: 'air-aware',
+    number: '03',
+    slug: 'air-aware',
+    title: 'Air Aware',
+    image: '/images/projects/air-aware/image.png',
+    tagline: 'Spatial DBMS-based air quality monitoring system',
+    shortDescription:
+      'A PostGIS-powered system modeling stations, pollutants and readings to estimate air quality across space, not just at fixed points.',
+    description:
+      'Air Aware is a spatial database system for air quality monitoring, built around PostgreSQL and PostGIS. It models monitoring stations, pollutants, readings and alerts, and uses spatial analysis to estimate air quality at locations that have no monitoring station of their own.',
+    categories: ['Databases', 'Systems'],
+    technologies: ['PostgreSQL', 'PostGIS', 'Supabase', 'SQL', 'Spatial Databases'],
+    role: 'Team project — 3 engineers',
+    github: '',
+    liveDemo: 'https://aqi-aware.netlify.app/',
+    featured: true,
+    size: 'large',
+    visual: 'air-aware',
+    architecture: [
+      {
+        label: 'Core Architecture',
+        stages: ['Stations', 'Readings', 'PostGIS', 'AQI Engine', 'Alerts', 'Spatial Analysis'],
+      },
+      {
+        label: 'Spatial AQI Estimation',
+        stages: ['Location', 'Nearby Stations', 'Distance-Weighted AQI', 'Estimated AQI'],
+      },
+    ],
+    caseStudy: {
+      overview:
+        'Air Aware treats air quality as spatial data rather than a set of disconnected readings. Stations, pollutants and readings are modeled directly in PostGIS, and the system uses that geometry to compute AQI, detect pollution spikes, and estimate air quality even where no station exists.',
+      problem:
+        'Air quality is normally reported only at fixed monitoring stations, so any location between stations has no reliable estimate of the air it actually breathes.',
+      approach:
+        'Stations, pollutants, readings and alerts are modeled as a relational schema with native spatial geometry through PostGIS, rather than treating a station\u2019s location as a flat latitude/longitude attribute. Database functions, triggers and views compute AQI from incoming multi-pollutant readings, flag pollution spikes, and generate alerts and health advisories directly at the data layer — so derived state stays consistent with new readings as they arrive. For any arbitrary location, the system finds nearby stations through spatial queries and produces a distance-weighted, interpolated AQI estimate rather than requiring a station to be physically present at that point.',
+      implementation: [
+        'A relational schema for stations, pollutants, readings and alerts with native PostGIS geometry',
+        'Database functions and triggers computing AQI from multi-pollutant readings as they arrive',
+        'Views exposing current AQI and alert state without duplicating logic in application code',
+        'Spatial nearby-station search using PostGIS spatial queries',
+        'Pollution spike detection driving automated alerts and health advisories',
+        'Distance-weighted spatial interpolation to estimate AQI at locations without a station',
+      ],
+      keyDecisions: [
+        {
+          title: 'Modeling location as geometry, not an attribute',
+          detail:
+            'Storing station positions as PostGIS geometry rather than plain latitude/longitude columns enables genuine spatial queries — nearest-station search and radius queries — instead of manual distance math in application code.',
+        },
+        {
+          title: 'Pushing AQI logic into the database',
+          detail:
+            'AQI calculation, spike detection and alerting live in database functions, triggers and views, so every client reading the data sees the same derived state without recomputing it independently.',
+        },
+        {
+          title: 'Distance-weighted interpolation for unmonitored locations',
+          detail:
+            'Rather than leaving areas between stations unaccounted for, nearby readings are combined with distance-based weighting to produce an estimated AQI for any queried location.',
+        },
+      ],
+      results:
+        'The system models stations, pollutants, readings and alerts as spatial data, computes AQI and detects pollution spikes at the database layer, supports nearby-station search, and estimates AQI at arbitrary locations through distance-weighted spatial interpolation.',
+      lessons:
+        'Designing the schema around geometry from the start — instead of bolting spatial queries onto flat tables later — made nearest-station search and interpolation straightforward rather than something to work around. Pushing AQI and alert logic into functions, triggers and views also clarified how much consistency you gain by keeping derived state close to the data it depends on.',
+    },
+  },
   // -------------------------------------------------------------------------
   {
     id: 'twitter-clone',
