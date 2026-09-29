@@ -228,7 +228,7 @@ export const projects: Project[] = [
     number: '03',
     slug: 'air-aware',
     title: 'Air Aware',
-    image: '/images/projects/air-aware/image.png',
+    // image: '/images/projects/air-aware/image.png',
     tagline: 'Spatial DBMS-based air quality monitoring system',
     shortDescription:
       'A PostGIS-powered system modeling stations, pollutants and readings to estimate air quality across space, not just at fixed points.',

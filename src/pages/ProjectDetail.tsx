@@ -66,7 +66,7 @@ export default function ProjectDetail() {
       {/* Visual banner */}
       <div className="border-b border-mist-200 bg-paper-dim">
         <Container>
-          <div className="aspect-[16/8] py-10">
+          <div className="h-[280px] py-10 sm:h-[340px] md:h-[400px]">
             {project.image ? (
               <img
                 src={project.image}

@@ -20,7 +20,7 @@ export default function ProjectCard({ project, size }: ProjectCardProps) {
     >
       <div
         className={`relative overflow-hidden border-b border-mist-200 bg-paper-dim ${
-          isLarge ? 'aspect-[16/9]' : 'aspect-[4/3]'
+          isLarge ? 'h-[240px] sm:h-[300px] md:h-[360px]' : 'h-[200px] sm:h-[240px]'
         }`}
       >
         {project.image ? (
